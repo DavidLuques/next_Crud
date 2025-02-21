@@ -1,3 +1,4 @@
+import TaskCard from '@/components/TaskCard'
 import {prisma} from '@/libs/prisma'
 
 async function loadTasks(){
@@ -17,11 +18,7 @@ async function HomePage
   return (
    <section className='container flex justify-center'>
     <div className='grid grid-cols-3 gap-3'>
-       {tasks.map(task => ((<div key={task.id} className='bg-slate-500 p-3 hover:bg-slate-700 hover:cursor-pointer'>
-        <h3 className='font-bold text-2xl mb-2'>{task.title}</h3>
-        <p>{task.description}</p>
-        <p>{task.createdAt.toLocaleDateString() }</p>
-       </div>))
+       {tasks.map(task => ((<TaskCard task={task} key={task.id}/>))
         
        )}
 
