@@ -9,9 +9,23 @@ export async function GET(req, res) {
     })
     return NextResponse.json(data)
 }
-export function PUT(req, { params }) {
-    return NextResponse.json("actualizando tareas " + params.id)
+
+export async function PUT(req, { params }) {
+    try {
+        const data = await req.json(); 
+        const taskupdated = await prisma.task.update({
+            where: {
+                id: Number(params.id)
+            },
+            data: data
+        });
+        return NextResponse.json(taskupdated); // return the updated task
+
+    } catch (error) {
+        return NextResponse.json(error.message,{status:500});
+    }
 }
+
 export async function DELETE(req, { params }) {
     try {
 
