@@ -58,7 +58,17 @@ function NewPage({ params }) {
         <label htmlFor='description' className='font-bold text-sm'>Descripcion de la tarea</label>
         <textarea rows="3" id='description' className='border border-gray-400 p-2 m-4 w-full text-black' placeholder='describe tu tarea '
           onChange={(e) => { setdescription(e.target.value) }} value={description}></textarea>
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'> crear</button>
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' type="submit"> crear</button>
+        {params.id&& (
+          <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4" type="button" onClick={async ()=>{
+            await fetch(`/api/tasks/${params.id}`,{
+              method:"DELETE", 
+            })
+            await router.refresh()
+            await router.push('/')
+          }}>Delete</button>
+        ) 
+        }
       </form></ div>
   )
 }
