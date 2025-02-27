@@ -8,7 +8,7 @@ function NavBar() {
 
                 <Link href="/" className=''>
                 <h3 className='font-bold text-3xl'>
-                    Next Crud
+                    Tasks Crud
                 </h3>
                 </Link >
                 
